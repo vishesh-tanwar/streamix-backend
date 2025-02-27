@@ -8,7 +8,6 @@ export interface IVideo {
     title: string;
     description?: string;
     video_data?: string;
-    mime_type: string;
     totallikes: number;
     totaldislikes: number;
     created_at: Date;

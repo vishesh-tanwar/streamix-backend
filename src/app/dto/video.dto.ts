@@ -14,10 +14,6 @@ export class CreateVideoDto implements Omit<IVideo, 'video_id' | 'totallikes' | 
     @IsString({ message: "Title must be a string" })
     title!: string;
 
-    @IsNotEmpty({ message: "MIME type is required" })
-    @IsString({ message: "MIME type must be a string" })
-    mime_type!: string;
-
     @IsNotEmpty()
     @IsNumber({}, { message: "User ID must be a number" })
     id!: number; // Use `user_id` for consistency with IVideo

@@ -32,7 +32,6 @@ class CreateVideo {
             const type = formData.get("type") as string;
 
             const description = formData.get("description") as string;
-            const mimeType = formData.get("mime_type") as string;
 
             const uploadDir = path.join(process.cwd(), "public/uploads");
             await fs.mkdir(uploadDir, { recursive: true });
@@ -58,7 +57,6 @@ class CreateVideo {
                 type,
                 thumbnail: tPath,
                 description,
-                mime_type: mimeType,
                 video_data: fPath,
             });
 
