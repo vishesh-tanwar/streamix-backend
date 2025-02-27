@@ -1,8 +1,8 @@
 import { VideoTypeEnum } from "@/app/utils/enums";
 
 export interface IVideo {
+    video_id: number;
     id: number;
-    user_id: number;
     type: VideoTypeEnum;
     thumbnail?: string;
     title: string;

@@ -8,7 +8,7 @@ import {
 import { VideoTypeEnum } from "@/app/utils/enums";
 import { IVideo } from "../models/users/videoModel";
 
-export class CreateVideoDto implements Omit<IVideo, 'id' | 'totallikes' | 'totaldislikes' | 'created_at'> {
+export class CreateVideoDto implements Omit<IVideo, 'video_id' | 'totallikes' | 'totaldislikes' | 'created_at'> {
 
     @IsNotEmpty({ message: "Title is required" })
     @IsString({ message: "Title must be a string" })
@@ -20,7 +20,7 @@ export class CreateVideoDto implements Omit<IVideo, 'id' | 'totallikes' | 'total
 
     @IsNotEmpty()
     @IsNumber({}, { message: "User ID must be a number" })
-    user_id!: number; // Use `user_id` for consistency with IVideo
+    id!: number; // Use `user_id` for consistency with IVideo
 
     @IsEnum(VideoTypeEnum, { message: "Type must be either 'video' or 'reel'" })
     type!: VideoTypeEnum;

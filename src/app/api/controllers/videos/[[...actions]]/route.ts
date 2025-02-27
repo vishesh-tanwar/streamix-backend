@@ -26,7 +26,7 @@ class CreateVideo {
             const thumbnail = formData.get("thumbnail") as File;
             console.log("image_data : ", thumbnail);
 
-            const userId = req.headers.get("x-user-id") || formData.get("userid");
+            const userId = req.headers.get("x-user-id") || formData.get("id");
             const title = String(formData.get("title")).trim();
             console.log(title);
             const type = formData.get("type") as string;
@@ -48,15 +48,18 @@ class CreateVideo {
             await fs.writeFile(thumbnailPath, thumbnailBuffer);
             console.log("thumbnail saved at : ", thumbnailPath);
 
+            const fPath = filePath.replace("/home/vishesh/Desktop/flutter/youtube2/backend/public", "");
+            const tPath = thumbnailPath.replace("/home/vishesh/Desktop/flutter/youtube2/backend/public", "");
+
             // Map form-data fields to DTO
             const videoDto = plainToInstance(CreateVideoDto, {
-                user_id: parseInt(userId as string),
+                id: parseInt(userId as string),
                 title,
                 type,
-                thumbnail: thumbnailPath,
+                thumbnail: tPath,
                 description,
                 mime_type: mimeType,
-                video_data: filePath,
+                video_data: fPath,
             });
 
             // Validate DTO
