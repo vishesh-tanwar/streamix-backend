@@ -7,7 +7,6 @@ export class getUserService {
             const result = await executeQuery({ query: query, values: [parseInt(userId)] });
             console.log('service ', result);
 
-            // const result = await db?.query(query);
             return result || [];
         } catch (error) {
             throw error;

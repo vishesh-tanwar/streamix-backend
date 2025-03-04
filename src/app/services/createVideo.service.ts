@@ -13,7 +13,6 @@ export class CreateVideoService {
                 video.title,
                 video.description,
                 video.video_data,
-                // video.mime_type,
                 video.thumbnail,
                 video.type,
             ];
