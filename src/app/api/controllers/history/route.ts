@@ -10,6 +10,7 @@ class History {
     async getHistory(req: NextRequest) {
         try {
             const data = await req.json();
+
             const dto = plainToInstance(HistoryDto, data);
             const errors = await validate(dto);
 
@@ -19,7 +20,10 @@ class History {
                     details: errors.map((err) => err.constraints),
                 }, { status: 400 });
             }
-            console.log(`video id = ${data.video_id} , userId = ${data.id}`);
+
+            if (data.user_id == -1) {
+                return NextResponse.json({ message: "user Not logged In" }, { status: 401 });
+            }
 
             const isDataInHistory = await this.service.checkHistoryDb(data.video_id, data.user_id);
             if (isDataInHistory) {

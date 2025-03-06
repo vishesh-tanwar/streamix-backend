@@ -11,4 +11,5 @@ export interface IVideo {
     totallikes: number;
     totaldislikes: number;
     created_at: Date;
+    duration: string;
 }

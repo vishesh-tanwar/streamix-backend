@@ -5,8 +5,8 @@ export class CreateVideoService {
     async createVideoDb(video: CreateVideoDto) {
         try {
             const query = `
-                INSERT INTO videos (id,title,description,video_data , thumbnail,type) 
-                VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+                INSERT INTO videos (id,title,description,video_data , thumbnail,type,duration) 
+                VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
 
             const values = [
                 video.id,
@@ -15,6 +15,7 @@ export class CreateVideoService {
                 video.video_data,
                 video.thumbnail,
                 video.type,
+                video.duration
             ];
 
             const result = await executeQuery({ query, values });

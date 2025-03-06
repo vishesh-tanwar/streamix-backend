@@ -33,6 +33,8 @@ class CreateVideo {
 
             const description = formData.get("description") as string;
 
+            const duration = formData.get("duration");
+
             const uploadDir = path.join(process.cwd(), "public/uploads");
             await fs.mkdir(uploadDir, { recursive: true });
             const filePath = path.join(uploadDir, fileData.name);
@@ -58,6 +60,7 @@ class CreateVideo {
                 thumbnail: tPath,
                 description,
                 video_data: fPath,
+                duration
             });
 
             // Validate DTO

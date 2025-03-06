@@ -3,8 +3,8 @@ import { executeQuery } from "../utils/postgres";
 
 export class historyService {
     async historyDb(data: HistoryDto) {
-        const query = 'INSERT INTO history (video_id,id,type,thumbnail,title,video_data,total_likes,total_dislikes,description,uploaded_at,photo,name,handle,user_id) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING *';
-        const values = [data.video_id, data.id, data.type, data.thumbnail, data.title, data.video_data, data.total_likes, data.total_dislikes, data.description, data.uploaded_at, data.photo, data.name, data.handle, data.user_id];
+        const query = 'INSERT INTO history (video_id,id,type,thumbnail,title,video_data,total_likes,total_dislikes,description,uploaded_at,photo,name,handle,user_id,duration) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15) RETURNING *';
+        const values = [data.video_id, data.id, data.type, data.thumbnail, data.title, data.video_data, data.total_likes, data.total_dislikes, data.description, data.uploaded_at, data.photo, data.name, data.handle, data.user_id, data.duration];
         try {
             const result = await executeQuery({ query: query, values: values });
             return result;

@@ -16,4 +16,5 @@ export interface IHistory {
     photo: string;
     name: string;
     handle: string;
+    duration: string;
 }

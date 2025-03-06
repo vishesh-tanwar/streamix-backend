@@ -1,11 +1,12 @@
 import { getAllReelsService } from "@/app/services/getReels.service";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 class allReels {
     private service: getAllReelsService = new getAllReelsService();
-    async getReels() {
+    async getReels(req: NextRequest) {
         try {
-            const result = await this.service.allReelsDb();
+            const page = parseInt(req.nextUrl.searchParams.get('page') ?? "0");
+            const result = await this.service.allReelsDb(page);
             if (result) {
                 return NextResponse.json({ message: "fetched successful", reels: result }, { status: 200 });
             }
@@ -15,6 +16,6 @@ class allReels {
     }
 }
 
-export function GET() {
-    return new allReels().getReels();
+export function GET(req: NextRequest) {
+    return new allReels().getReels(req);
 }

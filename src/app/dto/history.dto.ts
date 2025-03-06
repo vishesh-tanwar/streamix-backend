@@ -9,6 +9,10 @@ export class HistoryDto implements Omit<IHistory, 'history_id'> {
 
     @IsNotEmpty()
     @IsString()
+    duration!: string
+
+    @IsNotEmpty()
+    @IsString()
     name!: string
 
     @IsNotEmpty()
