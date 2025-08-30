@@ -24,7 +24,7 @@ class History {
             if (data.user_id == -1) {
                 return NextResponse.json({ message: "user Not logged In" }, { status: 401 });
             }
-
+            
             const isDataInHistory = await this.service.checkHistoryDb(data.video_id, data.user_id);
             if (isDataInHistory) {
                 console.log("already in History");

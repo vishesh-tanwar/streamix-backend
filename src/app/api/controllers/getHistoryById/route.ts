@@ -9,6 +9,8 @@ class getHistory {
             if (!userId) {
                 return NextResponse.json({ error: "User ID is required" }, { status: 400 });
             }
+            console.log(req.headers.get("x-user-id"));
+
             const result = await this.service.getHistoryByIdDb(userId);
             return NextResponse.json({ message: "Successful", result }, { status: 200 });
         } catch (error) {

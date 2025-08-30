@@ -7,7 +7,7 @@ export function getPool() {
             host: "127.0.0.1",
             port: 5432,
             user: "postgres",
-            password: "v1n2820a",
+            password: "newpassword",
             database: "postgres",
         });
 

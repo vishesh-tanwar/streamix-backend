@@ -49,8 +49,8 @@ class CreateVideo {
             await fs.writeFile(thumbnailPath, thumbnailBuffer);
             console.log("thumbnail saved at : ", thumbnailPath);
 
-            const fPath = filePath.replace("/home/vishesh/Desktop/Youtube/yt_backend/public", "");
-            const tPath = thumbnailPath.replace("/home/vishesh/Desktop/Youtube/yt_backend/public", "");
+            const fPath = filePath.replace("/Users/visheshtanwar/Desktop/yt_backend/public", "");
+            const tPath = thumbnailPath.replace("/Users/visheshtanwar/Desktop/yt_backend/public", "");
 
             // Map form-data fields to DTO
             const videoDto = plainToInstance(CreateVideoDto, {
