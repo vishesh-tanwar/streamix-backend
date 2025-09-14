@@ -1,9 +1,9 @@
-import { Pool } from "pg";
+// import { Pool } from "pg";
 
-let pool: Pool | null = null;
+// let pool: Pool | null = null;
 
 // export function getPool() {
-//     let pool;
+//     // let pool;
 //     try {
 //         pool = new Pool({
 //             host: "127.0.0.1",
@@ -21,30 +21,47 @@ let pool: Pool | null = null;
 //     } else { return null; }
 // }
 
-export function getPool(): Pool {
-    if (!pool) {
-      pool = new Pool({
-        connectionString: process.env.DATABASE_URL,
-        ssl: {
-          rejectUnauthorized: false, // required for Render Postgres
-        },
-      });
-    }
-    return pool;
-  }
+// export async function executeQuery({ query, values }: { query: string, values: any }) {
+//     let result;
+//     let db;
+//     try {
+//         db = await getPool();
+//         if (db) {
+//             result = await db.query(query, values);
+//         }
+//     } catch (error) {
+//         throw (error);
+//     } finally {
+//         db?.end();
+//     }
+//     return result!.rows;
+// }
 
-export async function executeQuery({ query, values }: { query: string, values: any }) {
-    let result;
-    let db;
-    try {
-        db = await getPool();
-        if (db) {
-            result = await db.query(query, values);
-        }
-    } catch (error) {
-        throw (error);
-    } finally {
-        db?.end();
-    }
-    return result!.rows;
+
+import { Pool } from "pg";
+
+let pool: Pool | null = null;
+
+export function getPool(): Pool {
+  if (!pool) {
+    pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    });
+  }
+  return pool;
+}
+
+export async function executeQuery({
+  query,
+  values,
+}: {
+  query: string;
+  values?: any[];
+}) {
+  const db = getPool(); // get the shared pool
+  const result = await db.query(query, values);
+  return result.rows;
 }
